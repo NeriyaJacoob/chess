@@ -1,0 +1,16 @@
+
+<div>
+    <h1>Products List </h1>
+    <button (click)="onClick()">Available Products</button>
+
+    <ng-container *ngIf="products.length > 0; else emptyList">
+        <p class="product-item" *ngFor="let product of products">
+            {{ product.name }} - {{ product.price | priceCurrency }} - {{ product.icategory}}
+        </p>
+    </ng-container>
+    <ng-template #emptyList>
+        <p>No Products Found</p>
+    </ng-template>
+</div>
+
+
