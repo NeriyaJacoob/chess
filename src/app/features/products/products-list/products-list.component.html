@@ -1,17 +1,27 @@
-
 <div>
-    <h1>Products List </h1>
+    <h1>Products List</h1>
     <button (click)="onClick()">Available Products</button>
+    <button class="primary-btn" [routerLink]="['/add-product']">+ Add Product</button>
+    
+    <div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+    <p>Loading products...</p>
+    </div>
+
 
     <ng-container *ngIf="products.length > 0; else emptyList">
-        <p class="product-item" *ngFor="let product of products">
-            {{ product.name }} - {{ product.price | priceCurrency }} - {{ product.category}}
-            <button (click)="viewDetails(product.id)">View Details</button>
-        </p>
+        <div class="product-item" *ngFor="let product of products">
+            <span>{{ product.name }} - {{ product.price | priceCurrency }} - {{ product.category }}</span>
+            
+            <div class="action-buttons">
+                <button class="view-btn" (click)="viewDetails(product.id)">View Details</button>
+                <button class="edit-btn" [routerLink]="['/edit', product.id]">Edit</button>
+                <button class="delete-btn" (click)="ondelete(product.id)">Delete</button>   
+            </div>
+        </div>
     </ng-container>
+
     <ng-template #emptyList>
         <p>No Products Found</p>
     </ng-template>
 </div>
-
-

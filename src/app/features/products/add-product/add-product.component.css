@@ -1,0 +1,77 @@
+.AddProduct {
+  max-width: 450px;
+  margin: 40px auto; /* ממרכז את הטופס אופקית */
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.AddProduct h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.AddProduct form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.AddProduct label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.AddProduct input:not([type="checkbox"]),
+.AddProduct select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.AddProduct input:not([type="checkbox"]):focus,
+.AddProduct select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.AddProduct form div:nth-last-child(2) {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.AddProduct input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.AddProduct button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.AddProduct button:hover {
+  background-color: #0056b3;
+}
+
+.AddProduct button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}

@@ -14,6 +14,8 @@ import { Observable , Subscriber} from 'rxjs';
 
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
+  isLoading: boolean = true;
+
 
   constructor(private apiProductService: ApiProductService, private router: Router) { }
   
@@ -25,13 +27,26 @@ export class ProductsListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
 
   }
+  ondelete(productId: number): void {
+    this.apiProductService.getProductById(productId).subscribe((product: Product) => {
+      if (product) {
+        this.apiProductService.deleteProduct(productId).subscribe(() => {
+          this.products = this.products.filter(p => p.id !== productId);
+        });
+      }
+    });
+  }
+
+
 
 
 
   ngOnInit() {
     this.apiProductService.getProducts().subscribe((data: Product[]) => {
       this.products = data;
+      this.isLoading = false;
     });
+
   }
 }
 

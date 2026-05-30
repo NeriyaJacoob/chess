@@ -3,6 +3,7 @@ import { ApiProductService } from '../../../core/services/api-product.service';
 import { Product } from 'src/app/models/product.model';
 import { FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -13,9 +14,9 @@ import { Output, EventEmitter } from '@angular/core';
 
 })
 export class AddProductComponent implements OnInit {
-
+isEditing: boolean = false;
   
-  constructor(private apiProductService: ApiProductService, private fb: FormBuilder) { }
+  constructor(private apiProductService: ApiProductService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
   addProductForm = this.fb.group({
     id: this.fb.control('', [Validators.required, Validators.min(1)]),
     name: this.fb.control('', [Validators.required]),
@@ -38,13 +39,40 @@ export class AddProductComponent implements OnInit {
       error: (err)=>{
         console.log("the server is not connecting");
       }
-    
-      
-
     });
   }
 
-  ngOnInit(): void {
+  onSubmit(): void {
+    const productData = this.addProductForm.value;
+
+    if (this.isEditing) {
+      this.apiProductService.updateProduct(productData.id, productData).subscribe({
+        next: () => {
+          this.router.navigate(['/products']); 
+        },
+        error: (err) => console.error('Error updating product', err)
+      });
+    } else {
+      this.apiProductService.addProduct(productData).subscribe({
+        next: () => {
+          this.addProductForm.reset();
+        },
+        error: (err) => console.error('Error adding product', err)
+      });
+    }
+  }
+
+ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.isEditing = true; 
+      this.apiProductService.getProductById(id).subscribe({
+        next: (productFromServer) => {
+          this.addProductForm.patchValue(productFromServer);
+        },
+        error: (err) => console.error('Failed to load product for editing', err)
+      });
+    }
   }
 
 }

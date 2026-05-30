@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <h2>Dashboard</h2>
+    <nav>
+        <a routerLink="/products">Products</a>
+        <a routerLink="/orders">Orders</a>
+        <a routerLink="/login">Login</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

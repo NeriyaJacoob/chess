@@ -1,0 +1,32 @@
+.details-page-wrapper {
+  display: flex;
+  justify-content: center; 
+  padding: 50px 20px;
+}
+
+.card {
+  background-color: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0; 
+}
+
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 20px 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.back-link:hover {
+  color: #000;
+}

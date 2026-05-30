@@ -1,6 +1,7 @@
 <div class="AddProduct">
-    <h2>Add Product</h2>
-    <form [formGroup]="addProductForm" (ngSubmit)="addProducts()">
+    <h2 *ngIf="!isEditing">Add Product</h2>
+    <h2 *ngIf="isEditing">Edit Product</h2>
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
         <div>
             <label>ID:</label>
             <input type="number" id="id" name="id" formControlName="id">
@@ -26,7 +27,28 @@
             <label>Is Available:</label>
             <input type="checkbox" formControlName="isAvailable">
         </div>
-        <button type="submit" [disabled]="!addProductForm.valid">Add Product</button>
+        <button type="submit" [disabled]="!addProductForm.valid">
+            {{ isEditing ? 'Save Changes' : 'Add Product' }}
+        </button>
     </form>
 </div>
 
+
+
+
+
+
+<!-- 
+
+ <div class="AddProduct">
+    <h2 *ngIf="!isEditing">Add Product</h2>
+    <h2 *ngIf="isEditing">Edit Product</h2>
+    
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+        
+        <button type="submit" [disabled]="!addProductForm.valid">
+            {{ isEditing ? 'Save Changes' : 'Add Product' }}
+        </button>
+    </form>
+</div>
+ -->

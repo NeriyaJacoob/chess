@@ -7,8 +7,17 @@ div {
   border-radius: 5px;
   background-color: #f9f9f9;
 }
-form{
-    background-color: #fff;
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-
+button:disabled {
+  background-color: #cccccc;
+  color: #666666; 
+  cursor: not-allowed; 
+}

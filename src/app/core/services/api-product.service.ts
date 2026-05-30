@@ -20,4 +20,16 @@ export class ApiProductService {
   addProduct(product: Product): Observable<any> {
     return this.http.post(this.productsurl, product, httpOptions);
   }
+
+  getProductById(id: string | number): Observable<Product> {
+    return this.http.get<Product>(`${this.productsurl}/${id}`);
+  }
+
+  deleteProduct(id: string | number): Observable<any> {
+    return this.http.delete(`${this.productsurl}/${id}`, httpOptions);
+  }
+  
+  updateProduct(id: string | number, product: Product): Observable<any> {
+    return this.http.put(`${this.productsurl}/${id}`, product, httpOptions);
+  }
 }

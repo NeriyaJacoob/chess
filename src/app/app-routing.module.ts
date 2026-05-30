@@ -7,13 +7,15 @@ import { ProductDetailsComponent } from './features/product-details/product-deta
 import { LoginComponent } from './features/auth/login/login.component';
 import { AddProductComponent } from './features/products/add-product/add-product.component';
 
+
 const routes: Routes = [
-  {path:"dashboard",component:DashboardComponent},
+  {path:"",component:DashboardComponent},
   {path:"products",component:ProductsListComponent},
   {path:"products/:id",component:ProductDetailsComponent},
   {path:"add-product",component:AddProductComponent},
   {path:"orders",component:OrdersComponent},
   {path:"login",component:LoginComponent},
+  {path:"edit/:id",component:AddProductComponent},
   {path:"**",redirectTo:"products"}
 ];
 
