@@ -5,7 +5,8 @@
 
     <ng-container *ngIf="products.length > 0; else emptyList">
         <p class="product-item" *ngFor="let product of products">
-            {{ product.name }} - {{ product.price | priceCurrency }} - {{ product.icategory}}
+            {{ product.name }} - {{ product.price | priceCurrency }} - {{ product.category}}
+            <button (click)="viewDetails(product.id)">View Details</button>
         </p>
     </ng-container>
     <ng-template #emptyList>

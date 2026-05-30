@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ApiProductService } from '../../../core/services/api-product.service';
 import { Product } from '../../../models/product.model';
+import { Router } from '@angular/router';
+import { Observable , Subscriber} from 'rxjs';
+
+
 
 @Component({
   selector: 'app-products-list',
@@ -7,23 +12,26 @@ import { Product } from '../../../models/product.model';
   styleUrls: ['./products-list.component.css']
 })
 
-export class ProductsListComponent {
-  products: Product[] = [
-    { id: 1, name: 'Laptop', price: 99.99, icategory: 'electronics', isAvailable: false },
-    { id: 2, name: 'T-Shirt', price: 19.99, icategory: 'clothing', isAvailable: true },
-    { id: 3, name: 'Sofa', price: 499.99, icategory: 'home', isAvailable: false },
-    { id: 4, name: 'Basketball', price: 29.99, icategory: 'sports', isAvailable: true }
-  ];
+export class ProductsListComponent implements OnInit {
+  products: Product[] = [];
 
-
-  constructor() { }
-
+  constructor(private apiProductService: ApiProductService, private router: Router) { }
+  
   onClick(): void {
     this.products =this.products.filter(product => product.isAvailable);
 
   }
+  viewDetails(productId: number): void {
+    this.router.navigate(['/products', productId]);
 
-  ngOnInit(): void {
   }
 
+
+
+  ngOnInit() {
+    this.apiProductService.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
 }
+
