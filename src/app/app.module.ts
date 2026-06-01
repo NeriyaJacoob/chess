@@ -16,6 +16,7 @@ import { ProductDetailsComponent } from './features/product-details/product-deta
 import { LoginComponent } from './features/auth/login/login.component';
 import { AddProductComponent } from './features/products/add-product/add-product.component';
 import { ProductService } from './core/services/product.service';
+import { GuardLogin } from './features/auth/login/guard-login.guard';
 
 
 
@@ -30,12 +31,15 @@ import { ProductService } from './core/services/product.service';
     LoginComponent,
     AddProductComponent,
     
+  
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

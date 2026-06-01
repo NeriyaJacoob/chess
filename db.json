@@ -1,20 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Laptop",
-      "price": 999.99,
-      "category": "electronics",
-      "isAvailable": true
-    },
-    {
-      "id": 2,
-      "name": "T-Shirt",
-      "price": 20.04,
-      "category": "clothing",
-      "isAvailable": true
-    },
-    {
       "id": 3,
       "name": "Laptop",
       "price": 999.99,

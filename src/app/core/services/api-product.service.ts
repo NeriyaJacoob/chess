@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Component, OnInit, Input ,EventEmitter, Injectable} from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: { 'Content-Type': 'application/json' }
@@ -9,9 +11,14 @@ const httpOptions = {
 
 @Injectable({ providedIn: 'root' })
 export class ApiProductService {
-  productsurl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  productsurl = 'http://localhost:3000/products';
+      Gmail:string =  "n@gmail.com";
+      Password:string = "123456";
+
+  
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsurl);
@@ -32,4 +39,10 @@ export class ApiProductService {
   updateProduct(id: string | number, product: Product): Observable<any> {
     return this.http.put(`${this.productsurl}/${id}`, product, httpOptions);
   }
+
+
+
+
+
+
 }
